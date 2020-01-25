@@ -9,6 +9,7 @@ import (
 	"net/url"
 	"os"
 	"strings"
+	"image/color"
 
 	"github.com/Baozisoftware/qrcode-terminal-go"
 	"github.com/glendc/go-external-ip"
@@ -126,7 +127,7 @@ func displayLink(loadedConfig *config) {
 	if loadedConfig.LndConnect.Url {
 		fmt.Println(u.String())
 	} else if loadedConfig.LndConnect.Image {
-		qrcode.WriteFile(u.String(), qrcode.Low, 320, "lndconnect-qr.png")
+		qrcode.WriteColorFile(u.String(), qrcode.Low, 320, color.Gray16{0xeeee}, color.Black, "lndconnect-qr.png")
 		fmt.Println("Wrote QR Code to file \"lndconnect-qr.png\"")
 	} else {
 		obj := qrcodeTerminal.New()
